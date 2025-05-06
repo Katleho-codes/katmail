@@ -8,6 +8,7 @@ import "dotenv/config";
 import helmet from "helmet";
 import { router as auth } from "./routes/auth/index.js";
 import { router as emails } from "./routes/emails/index.js";
+import nodemailer from "nodemailer";
 const app = express();
 
 app.use(
@@ -26,7 +27,29 @@ app.use(compression());
 app.set("trust proxy", 1); // trust first proxy
 app.disable("x-powered-by");
 
-// Authentication
+// const transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//         user: "katlehomabala3@gmail.com",
+//         pass: "ucml ipua rksz verj", // Use app password here
+//     },
+// });
+
+// const mailOptions = {
+//     from: "noreply@ac.com",
+//     to: "katlehomabala3@gmail.com",
+//     subject: "Test Email from Nodemailer",
+//     text: "This is a test email using Gmail + Nodemailer!",
+// };
+
+// transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//         return console.log("Error:", error);
+//     }
+//     console.log("Email sent:", info.response);
+// });
+
+// // Authentication
 app.use("/auth", auth);
 app.use("/emails", emails);
 
